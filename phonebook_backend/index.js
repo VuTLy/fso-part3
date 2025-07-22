@@ -4,10 +4,9 @@ const generateId = require('./utils/generateId')
 const express = require('express')
 const app = express()
 const morgan = require('morgan')
-const cors = require('cors')
 
 app.use(express.json())
-app.use(cors())
+app.use(express.static('dist'))
 
 // Create a custom token for logging the request body (only for POST)
 morgan.token('body', (req) => {
@@ -53,7 +52,7 @@ app.get('/api/persons', (request, response) => {
 app.get('/api/info', (request, response) => {
     const time = getFormattedLocalTime()
     const info = (`Phonebook has info for ${persons.length}<br><br>${time.replace(/,|at/g, '')}`)
-    res.set('Content-Type', 'text/html')
+    response.set('Content-Type', 'text/html')
     response.send(info)
     
 })
