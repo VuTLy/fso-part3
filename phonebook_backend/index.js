@@ -4,7 +4,7 @@ const generateId = require('./utils/generateId')
 const express = require('express')
 const app = express()
 const morgan = require('morgan')
-const cors = required('cors')
+const cors = require('cors')
 
 app.use(express.json())
 app.use(cors())
