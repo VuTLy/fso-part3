@@ -4,8 +4,10 @@ const generateId = require('./utils/generateId')
 const express = require('express')
 const app = express()
 const morgan = require('morgan')
+const cors = required('cors')
 
 app.use(express.json())
+app.use(cors())
 
 // Create a custom token for logging the request body (only for POST)
 morgan.token('body', (req) => {
@@ -104,7 +106,7 @@ app.post('/api/persons', (request, response) => {
     response.json(person)
 })
 
-const PORT = 3001
+const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
 })
